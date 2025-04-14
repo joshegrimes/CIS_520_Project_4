@@ -1,0 +1,3 @@
+/homes/joshgrimes/hw4/3way-pthread/build/CMakeFiles/pthread.dir
+/homes/joshgrimes/hw4/3way-pthread/build/CMakeFiles/edit_cache.dir
+/homes/joshgrimes/hw4/3way-pthread/build/CMakeFiles/rebuild_cache.dir
