@@ -49,13 +49,21 @@ int main(int argc, char *argv[])
     for (MPI_Offset i = off; i < bytes; ++i) {
         unsigned char c = (unsigned char)buf[i];
         if (c != '\n') {
-            if (c > cur) cur = c;
+            if (c >= 32 && c <= 126 && c > cur) cur = c;
         } else {                         /* end of a line */
             if (n == cap) { cap <<= 1; vals = realloc(vals, cap); }
             vals[n++] = cur;
             cur = 0;
         }
     }
+    
+    // final check for leftover line 
+    if (cur != 0 || (bytes > 0 && buf[bytes-1] != '\n')) {
+         if (n == cap) { cap <<= 1; vals = realloc(vals, cap); }
+         vals[n++] = cur;
+    }
+
+
     free(buf);
 
     int myCount = (int)n;
