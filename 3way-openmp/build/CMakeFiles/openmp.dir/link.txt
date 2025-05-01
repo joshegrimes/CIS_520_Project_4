@@ -1,0 +1,1 @@
+/opt/software/software/GCCcore/11.3.0/bin/cc -O3 -DNDEBUG CMakeFiles/openmp.dir/openmp.c.o -o openmp  /opt/software/software/GCCcore/11.3.0/lib64/libgomp.so /lib64/libpthread.a 

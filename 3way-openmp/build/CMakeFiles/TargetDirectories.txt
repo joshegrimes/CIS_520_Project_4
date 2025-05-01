@@ -1,0 +1,7 @@
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/openmp.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/edit_cache.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/rebuild_cache.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/list_install_components.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/install.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/install/local.dir
+/homes/joshgrimes/hw4/3way-openmp/build/CMakeFiles/install/strip.dir
