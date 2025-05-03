@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=pthread                     # a short name for your job
+#SBATCH --job-name=pthread                     # name of the job
 #SBATCH --output=slurm-%j.out                  # %j expands to the jobID
 #SBATCH --time=5:00:00                         # HH:MM:SS, here 1 hour
 #SBATCH --mem-per-cpu=1536M                    # 1.5 GB per core

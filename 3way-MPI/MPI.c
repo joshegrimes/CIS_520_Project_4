@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
 
     // Ensures there is only one argument other than the executable: the file path
-    if (argc != 2)
+    if(argc != 2)
     {
         // only rank 0 prints this message, to avoid duplicates
-        if (!rank)
+        if(!rank)
             fprintf(stderr, "Usage: %s <file>\n", argv[0]);
 
         // cleanly shuts down and returns
@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
     MPI_Offset fsize = 0;
 
     // only do this with rank 0
-    if (!rank)
+    if(!rank)
     {
 	// opens the file in binary mode, seeks to the end, and retrieves the file size in bytes -
         // calls MPI_Abort if there's an error opening the file so that all ranks exit
         FILE *fs = fopen(fname, "rb");
-        if (!fs)
-        }
+        if(!fs)
+        {
             perror("fopen");
             MPI_Abort(MPI_COMM_WORLD, 2);
         }
@@ -73,11 +73,11 @@ int main(int argc, char *argv[])
     // line continues until it sees its first newline character, then starts line processing just after
     // that newline; rank 0 starts at an offset of 0 (i.e. the beginning)
     MPI_Offset off = 0;
-    if (rank)
+    if(rank)
     {
-        while (off < bytes && buf[off] != '\n')
+        while(off < bytes && buf[off] != '\n')
             ++off;
-        if (off < bytes)
+        if(off < bytes)
             ++off;
     }
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     // ASCII code
     unsigned char *vals = NULL;
     size_t cap = 1024, n = 0;
-    if (bytes)
+    if(bytes)
     {
         vals = malloc(cap);
     }
@@ -94,17 +94,17 @@ int main(int argc, char *argv[])
     // and larger than the current max, on a newline append 'cur' to the 'vals' array, reset cur to 0, and continue;
     // after the loop check for a final line without trailing newline and append it if needed; lastly free the read buffer
     unsigned char cur = 0;
-    for (MPI_Offset i = off; i < bytes; ++i)
+    for(MPI_Offset i = off; i < bytes; ++i)
     {
         unsigned char c = (unsigned char)buf[i];
-        if (c != '\n')
+        if(c != '\n')
         {
-            if (c >= 32 && c <= 126 && c > cur)
+            if(c >= 32 && c <= 126 && c > cur)
                 cur = c;
         }
         else
         {
-            if (n == cap)
+            if(n == cap)
             {
                 cap <<= 1;
                 vals = realloc(vals, cap);
@@ -114,9 +114,9 @@ int main(int argc, char *argv[])
         }
     }
     // final check for leftover line
-    if (cur != 0 || (bytes > 0 && buf[bytes-1] != '\n'))
+    if(cur != 0 || (bytes > 0 && buf[bytes-1] != '\n'))
     {
-         if (n == cap)
+         if(n == cap)
          {
              cap <<= 1;
              vals = realloc(vals, cap);
