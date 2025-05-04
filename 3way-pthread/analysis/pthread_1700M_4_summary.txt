@@ -1,0 +1,5 @@
+Metric      Mean        StdDev
+task_clock_ms  3222.62 ms    33.67 ms
+wall_s         2.209 s     0.114 s
+cpu_pct        144.5%       6.8%
+max_rss_kb     1697868 KB     360 KB
