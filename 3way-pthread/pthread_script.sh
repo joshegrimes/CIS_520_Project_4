@@ -12,7 +12,7 @@ module load foss/2022a
 # Go to the directory where this script lives
 cd "${SLURM_SUBMIT_DIR}"
 
-# Compile the pthreads version
+# compile the pthreads version
 gcc -Wall -O2 -pthread pthread.c -o pthread
 
 # ensure it really is executable
@@ -23,8 +23,26 @@ chmod +x pthread
 dumpfile="dump_${1}.txt"
 head -c "$1" ~dan/625/wiki_dump.txt > "$dumpfile"
 
-# run
-./pthread "$dumpfile" "$2"
+# name the perf output file by size, thread-count
+perf_out="analysis/perf_pthread_${1}_${2}.csv"
+
+# run 10 repetitions of perf stat, CSV-style, measuring a few key events
+perf stat -x, -r 10 \
+  -e task-clock \
+  -o "$perf_out" \
+  -- ./pthread "$dumpfile" "$2"
+
+# wrap the same binary once in /usr/bin/time -v to capture MaxRSS & “real” time
+time_out="analysis/time_pthread_${1}_${2}.txt"
+/usr/bin/time -f \
+"WALL=%e\nCPU_PCT=%P\nMAXRSS=%M" \
+./pthread "$dumpfile" "$2" 2> "$time_out"
+
+# record elapsed seconds and max RSS (in KB) via sacct
+sacct -j ${SLURM_JOB_ID}.batch \
+  -n -P \
+  --format=JobID,ElapsedRaw,MaxRSS \
+  > analysis/sacct_pthread_${1}_${2}.csv
 
 # cleanup
 rm -f "$dumpfile"
