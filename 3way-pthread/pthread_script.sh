@@ -106,7 +106,3 @@ awk -F, '
     printf("max_rss_kb     %.0f KB     %.0f KB\n",   mean_mr, sd_mr) >> "'"$summary_txt"'"
   }
 ' "$out_csv"
-
-# remove all of the individual run files, just keep the final summary files
-rm -f analysis/perf_"${size}"_"${threads}"_run*.csv \
-      analysis/time_"${size}"_"${threads}"_run*.txt

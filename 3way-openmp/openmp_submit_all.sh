@@ -3,8 +3,9 @@
 # if any command in this script returns a non-zero (i.e. “error”) exit status, immediately stop the script
 set -e
 
-# ensures the logs directory exists
+# ensures the logs and analysis directories exists
 mkdir -p logs
+mkdir -p analysis
 
 # list of sizes (bytes)
 sizes=(60M 120M 240M 720M 1440M 1700M)
