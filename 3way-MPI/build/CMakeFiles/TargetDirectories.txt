@@ -1,3 +1,0 @@
-/homes/joshgrimes/hw4/3way-MPI/build/CMakeFiles/mpi.dir
-/homes/joshgrimes/hw4/3way-MPI/build/CMakeFiles/edit_cache.dir
-/homes/joshgrimes/hw4/3way-MPI/build/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,0 @@
-/opt/software/software/GCCcore/11.3.0/bin/cc CMakeFiles/pthread.dir/pthread.c.o -o pthread 
